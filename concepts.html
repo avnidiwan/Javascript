@@ -104,10 +104,10 @@
         {
             //FUNCTIONS
             //1.using keyword
-            function sum() {
-                console.log("hehehehee");
-            }
-            sum();
+            // function sum() {
+            //     console.log("hehehehee");
+            // }
+            // sum();
 
 
             //using arrow function
@@ -122,12 +122,12 @@
             //Types of loop otherthan for,while,dowhile
             //FOR-IN
             let arr = [1, 2, 3, 4, 5, 6]
-            for (let i in arr2) {
+            for (let i in arr) {
                 console.log(i); //by default for-in loop return the index number
             }
 
             //FOR-OF
-            for (let i of arr2) {
+            for (let i of arr) {
                 console.log(i); //by default for-of loop return the value at that index
             }
         }
@@ -211,7 +211,7 @@
                 }
             }
             obj.sum();
-            console.log(obj1.name);
+            console.log(obj.name);
         }
 
 
@@ -349,9 +349,9 @@
                 }
                 return res;
             }
-            console.log(getvalues(arr10, getString))
-            console.log(getvalues(arr10, getNumber))
-            console.log(getvalues(arr10, getBool))
+            console.log(getvalues(arr, getString))
+            console.log(getvalues(arr, getNumber))
+            console.log(getvalues(arr, getBool))
         }
 
 
@@ -415,8 +415,116 @@
                 //this will result a=5 as it will point to the window a global object
             }
         }
-    </script>
 
+
+        {
+            //map function made using prototype
+            let arr = [1, 2, 3, 4, 5, 6, 7]
+            Array.prototype.myMap = function (callback) {
+                let res = []
+                for (let i = 0; i < this.length; i++) {
+                    res.push(this[i])
+                }
+                return res
+            }
+
+            let data = arr.myMap((a, b, c) => {
+                return a;
+            })
+            console.log(data)
+        }
+
+        {
+            //filter function made using prototype
+            let arr = [1, 2, 3, 4, 5, 6, 7]
+            Array.prototype.myFilter = function (callback) {
+                let res = []
+                for (let i = 0; i < this.length; i++) {
+                    if (this[i], i, this) {
+                        res.push(this[i])
+                    }
+                }
+                return res
+            }
+
+            let data = arr.myFilter((a, b, c) => {
+                return a > 2;
+            })
+            console.log(data)
+        }
+
+        {
+            //webAPI, callstack, callback queue, eventloop 
+        }
+
+        // {
+        //     //code to check the working of settimeout function
+        //     function step1(){
+        //         setTimeout(()=>{
+        //             console.log("select photo");
+        //         },5000)
+        //     }
+        //     function step2(){
+        //         setTimeout(()=>{
+        //             console.log("add filter");
+        //         },4000)
+        //     }
+        //     function step3(){
+        //         setTimeout(()=>{
+        //             console.log("add caption");
+        //         },3000)
+        //     }
+        //     function step4(){
+        //         setTimeout(()=>{
+        //             console.log("post");
+        //         },2000)
+        //     }
+        //     step1() 
+        //     step2() 
+        //     step3() 
+        //     step4()
+
+        // }
+
+        {
+            function step1(fn) {
+                setTimeout(() => {
+                    console.log("select photo");
+                    fn()
+                }, 4000)
+
+            }
+            function step2(fn) {
+                setTimeout(() => {
+                    console.log("add filter");
+                    fn()
+                }, 3000)
+
+            }
+            function step3(fn) {
+                setTimeout(() => {
+                    console.log("add caption");
+                    fn()
+                }, 2000)
+
+            }
+            function step4(fn) {
+                setTimeout(() => {
+                    console.log("post");
+                    fn()
+                }, 1000)
+            }
+
+            step1(() => {
+                step2(() => {
+                    step3(() => {
+                        step4()
+                    })
+                })
+            })
+        }
+
+    </script>
 </body>
 
 </html>
